@@ -1,24 +1,17 @@
 #include <SFML/Graphics.hpp>
+#include "./src/Menu.cpp"
+#include <string>
+
+using namespace sf;
+using namespace std;
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
-    sf::CircleShape shape(100.f);
-    shape.setFillColor(sf::Color::Green);
+  // Menu *programa;
+  // programa = new Menu(800, 600, "LlamaGames");
+  // delete programa;
 
-    while (window.isOpen())
-    {
-        sf::Event event;
-        while (window.pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed)
-                window.close();
-        }
+  Menu menu;
 
-        window.clear();
-        window.draw(shape);
-        window.display();
-    }
-
-    return 0;
+  return 0;
 }
