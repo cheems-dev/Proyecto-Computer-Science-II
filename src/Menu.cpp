@@ -12,15 +12,15 @@ Menu::~Menu()
 
 void Menu::Init()
 {
-  window = new RenderWindow(VideoMode(1000, 800), "LlamaGames");
+  window = new RenderWindow(VideoMode(576, 324), "LlamaGames");
   // Cargar las texturas
-  texBackground.loadFromFile("./assets/background/background.png");
-  textChar.loadFromFile("./assets/character/veggeta.png");
+  texBackground.loadFromFile("./assets/swamp-game-tileset/2 Background/Background.png");
+  textChar.loadFromFile("./assets/characters/1 Woodcutter/Woodcutter_idle.png");
 
   spBackground.setTexture(texBackground);
   spChar.setTexture(textChar);
-
-  spChar.setPosition(304, 305);
+  spChar.setTextureRect({0,0,48,48});
+  spChar.setPosition(200, 200);
   Run();
 }
 
