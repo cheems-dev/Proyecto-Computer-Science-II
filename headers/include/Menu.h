@@ -18,18 +18,20 @@ public:
 private:
   // int fps
   RenderWindow *window;
-  
+
   Texture texLogo;
   Texture texBackground;
   Texture texPlay;
   Texture texRecords;
   Texture texExit;
+  Texture texChar;
 
   Sprite spLogo;
   Sprite spBackground;
   Sprite spPlay;
   Sprite spRecords;
   Sprite spExit;
+  Sprite spChar;
 
   void Init();
   void Update();
