@@ -1,5 +1,5 @@
-#ifndef MENU_H //que onda con esto para que sirve
-#define MENU_H //x2
+#ifndef MENU_H 
+#define MENU_H 
 
 #include "SFML/Graphics.hpp"
 #include "SFML/Window/Event.hpp"
@@ -19,19 +19,21 @@ private:
   // int fps
   RenderWindow *window;
 
+  Vector2f vellEnemy;
   Texture texLogo;
   Texture texBackground;
   Texture texPlay;
   Texture texRecords;
   Texture texExit;
   Texture texChar;
-
+  Texture textEnemy;
   Sprite spLogo;
   Sprite spBackground;
   Sprite spPlay;
   Sprite spRecords;
   Sprite spExit;
   Sprite spChar;
+  Sprite spEnemy;
 
   void Init();
   void Update();

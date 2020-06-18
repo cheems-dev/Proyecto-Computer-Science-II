@@ -22,6 +22,7 @@ void Menu::Init()
   // texRecords.loadFromFile("./assets/menu-tiles/records-unsel.png");
   // texExit.loadFromFile("./assets/menu-tiles/exit-unsel.png");
   texChar.loadFromFile("./assets/characters/1 Woodcutter/Woodcutter.png");
+  textEnemy.loadFromFile("./assets/desert-enemys/2 Hyena/Hyena.png");
 
   spBackground.setTexture(texBackground);
   // spLogo.setTexture(texLogo);
@@ -29,6 +30,7 @@ void Menu::Init()
   // spRecords.setTexture(texRecords);
   // spExit.setTexture(texExit);
   spChar.setTexture(texChar);
+  spEnemy.setTexture(textEnemy);
 
   spLogo.scale(1.7f, 1.7f);
   // spLogo.setPosition(0, 80);
@@ -36,6 +38,11 @@ void Menu::Init()
   // spRecords.setPosition(400, 125);
   // spExit.setPosition(400, 200);
   spChar.setPosition(100, 200);
+  // Posicionar al enemigo
+  srand(time(0));
+  spEnemy.setPosition(rand()%300,200);
+  vellEnemy.x = 2 + rand() % 3;
+  
   Run();
 }
 
@@ -63,14 +70,36 @@ void Menu::Update()
     spChar.move(-5, 0);
   else if (Keyboard::isKeyPressed(Keyboard::D))
     spChar.move(5, 0);
+  // else if (Keyboard::isKeyPressed(Keyboard::W))
+  // {
+  //   spChar.move(2, -2);
+  //   spChar.move(2, -1);
+  //   spChar.move(2, -0);
+  //   spChar.move(2, +2);
+  //   // spChar.move(5, 0);
+  // }
+  
 
   //Limitar el movimiento del personaje a la ventana
   Vector2f charPos = spChar.getPosition();
   if (charPos.x < 0)
     charPos.x = 0;
-  else if (charPos.x > 600)
+  if (charPos.x > 600)
     charPos.x = 600;
   spChar.setPosition(charPos);
+
+  // Mover al enemigo
+  spEnemy.move(vellEnemy);
+  Vector2f charPosEnemy = spEnemy.getPosition();
+  if(charPosEnemy.x < 200){
+    charPosEnemy.x = 200;
+    vellEnemy.x *= -1;
+  }
+  if(charPosEnemy.x > 350){
+    charPosEnemy.x = 350;
+    vellEnemy.x *= -1;
+  }
+  spEnemy.setPosition(charPosEnemy);
 }
 
 void Menu::Draw()
@@ -84,6 +113,7 @@ void Menu::Draw()
   // window->draw(spRecords);
   // window->draw(spExit);
   window->draw(spChar);
+  window->draw(spEnemy);
   // Refrescar la ventana
   window->display();
 }
