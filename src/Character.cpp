@@ -5,13 +5,15 @@ Character::Character(const Vector2f &pos){
   textChar.loadFromFile("./assets/characters/1 Woodcutter/Woodcutter.png");
   spChar.setTexture(textChar);
   spChar.setPosition(pos);
+
+  //char_anim.setAnim(&textChar,Vector2u(1,6),0.3f);
 }
 
 void Character::update(){
   // Movimiento del personaje
-  if(Keyboard::isKeyPressed(Keyboard::A) || Keyboard::isKeyPressed(Keyboard::Right))
+  if(Keyboard::isKeyPressed(Keyboard::A) || Keyboard::isKeyPressed(Keyboard::Left))
     spChar.move(-charVel, 0);
-  if(Keyboard::isKeyPressed(Keyboard::D) || Keyboard::isKeyPressed(Keyboard::Left))
+  if(Keyboard::isKeyPressed(Keyboard::D) || Keyboard::isKeyPressed(Keyboard::Right))
     spChar.move(charVel, 0);
   
   // Limitar el movimiento del personaje
@@ -19,6 +21,8 @@ void Character::update(){
   if(charPos.x < 0) charPos.x = 0;
   if(charPos.x > 500) charPos.x = 500;
   spChar.setPosition(charPos);
+
+  
 }
 
 void Character::draw(RenderWindow &window){
