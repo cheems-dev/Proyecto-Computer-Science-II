@@ -25,12 +25,12 @@ void Character::draw(RenderWindow &window){
   window.draw(spChar);
 } 
 
-Sprite &Character::getSprite(){
+Sprite Character::getSprite(){
   return spChar;
 }
 
 // Pendiente enemy
-bool Character::collidesWithEnemy(Enemy * e){
+bool Character::collidesWithEnemy(Enemy *e){
   
   FloatRect charRect = getSprite().getGlobalBounds();
   FloatRect ballRect = e->getSprite().getGlobalBounds();

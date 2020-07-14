@@ -1,6 +1,5 @@
 #ifndef ENTITY_H 
 #define ENTITY_H 
-// RenderWindow
 #include <SFML/Graphics.hpp>
 using namespace sf;
 

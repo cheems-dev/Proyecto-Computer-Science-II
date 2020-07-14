@@ -36,6 +36,6 @@ void Enemy::draw(RenderWindow &window){
   window.draw(spEnemy);
 } 
 
-Sprite &Enemy::getSprite(){
+Sprite Enemy::getSprite(){
   return spEnemy;
 }

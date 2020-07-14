@@ -17,7 +17,7 @@ public:
   void update()override;
   void draw(RenderWindow &)override;
   // Metodo que devuelva el sprite
-  Sprite &getSprite();
+  Sprite getSprite();
   // Cuando colisiona con el enemigo
   bool collidesWithEnemy(Enemy *);
 };

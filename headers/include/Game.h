@@ -18,7 +18,7 @@ class Game
   Enemy *enemy;
   // Vector de punteros , invocar poliformicamente update, draw
   vector<Entity * > entities;
-  // tamaño definico 
+  // tamaño definido 
   int height = 576;
   int width = 324;
 
