@@ -24,3 +24,9 @@ g++ main.cpp -lsfml-graphics -lsfml-window -lsfml-system
 ```
 ./a.out
 ```
+
+- Siguiente Objetivo
+
+```
+- Mejorar el sistema de colisión
+```
