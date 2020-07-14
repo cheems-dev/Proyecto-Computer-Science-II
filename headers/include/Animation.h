@@ -10,8 +10,8 @@ class Animation
 {
 private:
   /*Variables Miembro*/
-  Vector2u imageCount;
-  Vector2u currentImage;
+  int nFrames;
+  int currentFrame;
   float totalTime;
   float switchTime;
   /*Funciones Miembro*/
@@ -21,9 +21,9 @@ public:
   IntRect uvRect;
   /*Funciones Miembro*/
   Animation();
-  Animation(Texture *, Vector2u, float);
+  Animation(Texture *, int, float);
   ~Animation();
-  void setAnim(Texture *, Vector2u, float);
-  void updateAnim(int, float, bool);
+  void setAnim(Texture *, int, float);
+  void updateAnim(float, bool);
 };
 #endif

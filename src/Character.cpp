@@ -2,20 +2,30 @@
 
 Character::Character(const Vector2f &pos){
   // Cargando texturas
-  textChar.loadFromFile("./assets/characters/1 Woodcutter/Woodcutter.png");
+  textChar.loadFromFile("./assets/characters/1 Woodcutter/Woodcutter_run.png");
   spChar.setTexture(textChar);
   spChar.setPosition(pos);
-
-  //char_anim.setAnim(&textChar,Vector2u(1,6),0.3f);
+  // Animacion
+  charAnim.setAnim(&textChar,6,0.2f);
 }
 
 void Character::update(){
   // Movimiento del personaje
+  deltaTime=clock.restart().asSeconds();
+
   if(Keyboard::isKeyPressed(Keyboard::A) || Keyboard::isKeyPressed(Keyboard::Left))
+  {
     spChar.move(-charVel, 0);
+    charAnim.updateAnim(deltaTime,false);
+  }
   if(Keyboard::isKeyPressed(Keyboard::D) || Keyboard::isKeyPressed(Keyboard::Right))
+  {
     spChar.move(charVel, 0);
+    charAnim.updateAnim(deltaTime, true);
+  }
   
+  spChar.setTextureRect(charAnim.uvRect);
+
   // Limitar el movimiento del personaje
   Vector2f charPos = spChar.getPosition();
   if(charPos.x < 0) charPos.x = 0;

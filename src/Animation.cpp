@@ -1,51 +1,57 @@
 #include "../headers/include/Animation.h"
-Animation::Animation(){}
-Animation::Animation(Texture *texture, Vector2u imageCount, float switchTime)
-{ 
-  this->imageCount = imageCount;
+Animation::Animation() {}
+Animation::Animation(Texture *texture, int nFrames, float switchTime)
+{
+  //Establecer variables miembro
+  this->nFrames = nFrames;
   this->switchTime = switchTime;
   totalTime = 0.0f;
-  currentImage.x = 0;
+  currentFrame = 0;
 
-  uvRect.width = texture->getSize().x / float(imageCount.x);
-  uvRect.height = texture->getSize().y / float(imageCount.y);
+  //Establecer el tamaño de 1 frame
+  uvRect.width = texture->getSize().x / nFrames;
+  uvRect.height = texture->getSize().y;
 }
 
-void Animation::setAnim(Texture *texture, Vector2u imageCount, float switchTime)
+void Animation::setAnim(Texture *texture, int nFrames, float switchTime)
 {
-  this->imageCount = imageCount;
+  //Establecer variables miembro
+  this->nFrames = nFrames;
   this->switchTime = switchTime;
   totalTime = 0.0f;
-  currentImage.x = 0;
+  currentFrame = 0;
 
-  uvRect.width = texture->getSize().x / float(imageCount.x);
-  uvRect.height = texture->getSize().y / float(imageCount.y);
+  //Establecer el tamaño de 1 frame
+  uvRect.width = texture->getSize().x / nFrames;
+  uvRect.height = texture->getSize().y;
 }
 
-void Animation::updateAnim(int row, float deltaTime ,bool faceR)
+void Animation::updateAnim(float deltaTime, bool faceR)
 {
-  currentImage.y = row;
   totalTime += deltaTime;
   if (totalTime >= switchTime)
   {
     totalTime -= switchTime;
-    currentImage.x++;
+    currentFrame++;
 
-    if (currentImage.x >= imageCount.x)
+    if (currentFrame >= nFrames)
     {
-      currentImage.x = 0;
+      currentFrame = 0;
     }
   }
-  uvRect.top = currentImage.y * uvRect.height;
-  if(faceR)
+  uvRect.top = 0;
+
+  // Analisis de la condición para girar el personaje
+  if (faceR)
   {
-    uvRect.left = currentImage.x * uvRect.width;
+    uvRect.left = currentFrame * uvRect.width;
+    uvRect.width = abs(uvRect.width);
   }
   else
   {
-    uvRect.left = (currentImage.x +1) * abs(uvRect.width);
+    uvRect.left = (currentFrame + 1) * abs(uvRect.width);
     uvRect.width = -abs(uvRect.width);
-  } 
+  }
 }
 
 Animation::~Animation()

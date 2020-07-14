@@ -3,7 +3,6 @@
 
 #include "./Entity.h"
 #include "../../src/Enemy.cpp"
-#include "../../src/Animation.cpp"
 // Incluir enemy
 // Standart C+11 -> Sobreescribir una funcion de una clase base
 class Character : public Entity
@@ -12,7 +11,11 @@ private:
   Sprite spChar;
   Texture textChar;
   const float charVel = 5;
-  //Animation char_anim;
+
+  // Animacion
+  Animation charAnim;
+  float deltaTime=0.0f;
+  Clock clock;
 
 public:
   Character(const Vector2f &);

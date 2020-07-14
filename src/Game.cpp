@@ -60,4 +60,3 @@ void Game::draw(){
   // refrescar la ventana
   window.display();
 }
-
