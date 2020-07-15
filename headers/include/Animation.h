@@ -24,6 +24,7 @@ public:
   Animation(Texture *, int, float);
   ~Animation();
   void setAnim(Texture *, int, float);
+  void setnFrames(int);
   void updateAnim(float, bool);
 };
 #endif

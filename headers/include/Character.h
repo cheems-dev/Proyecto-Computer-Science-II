@@ -9,13 +9,16 @@ class Character : public Entity
 {
 private:
   Sprite spChar;
-  Texture textChar;
-  const float charVel = 5;
+  Texture textCharIdle;
+  Texture textCharRun;
+  Texture textCharAtk;
+  const float charVel = 3;
 
   // Animacion
   Animation charAnim;
   float deltaTime=0.0f;
   Clock clock;
+  bool faceR;
 
 public:
   Character(const Vector2f &);

@@ -6,11 +6,11 @@ Enemy::Enemy(){
   spEnemy.setTexture(textEnemy);
   srand(time(0));
   spEnemy.setPosition(rand()%valueX, rand()%valueY);
-  vellEnemy.x = 2 + rand() % 3;
-  vellEnemy.y = 2 + rand() % 3;
+  vellEnemy.x = 2 + rand() % 2;
+  vellEnemy.y = 2 + rand() % 2;
 
   // Animacion
-  enemyAnim.setAnim(&textEnemy, 4, 0.2f);
+  enemyAnim.setAnim(&textEnemy, 4, 0.1f);
 }
 
 void Enemy::update(){
