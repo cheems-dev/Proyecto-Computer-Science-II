@@ -2,11 +2,13 @@
 
 Character::Character(const Vector2f &pos){
   // Cargando texturas
-  textChar.loadFromFile("./assets/characters/1 Woodcutter/Woodcutter_run.png");
-  spChar.setTexture(textChar);
+  textCharIdle.loadFromFile("./assets/characters/1 Woodcutter/Woodcutter_idle.png");
+  textCharRun.loadFromFile("./assets/characters/1 Woodcutter/Woodcutter_run.png");
+  textCharAtk.loadFromFile("./assets/characters/1 Woodcutter/Woodcutter_attack1.png");
+  spChar.setTexture(textCharIdle);
   spChar.setPosition(pos);
   // Animacion
-  charAnim.setAnim(&textChar,6,0.2f);
+  charAnim.setAnim(&textCharIdle,4,0.1f);
 }
 
 void Character::update(){
@@ -15,15 +17,30 @@ void Character::update(){
 
   if(Keyboard::isKeyPressed(Keyboard::A) || Keyboard::isKeyPressed(Keyboard::Left))
   {
+    spChar.setTexture(textCharRun);
+    charAnim.setnFrames(6);
     spChar.move(-charVel, 0);
-    charAnim.updateAnim(deltaTime,false);
+    faceR=false;
   }
-  if(Keyboard::isKeyPressed(Keyboard::D) || Keyboard::isKeyPressed(Keyboard::Right))
+  else if(Keyboard::isKeyPressed(Keyboard::D) || Keyboard::isKeyPressed(Keyboard::Right))
   {
+    spChar.setTexture(textCharRun);
+    charAnim.setnFrames(6);
     spChar.move(charVel, 0);
-    charAnim.updateAnim(deltaTime, true);
+    faceR = true;
   }
-  
+  else if(Keyboard::isKeyPressed(Keyboard::J))
+  {
+    spChar.setTexture(textCharAtk);
+    charAnim.setnFrames(6);
+  }
+  else
+  {
+    spChar.setTexture(textCharIdle);
+    charAnim.setnFrames(4);
+  }
+
+  charAnim.updateAnim(deltaTime, faceR);
   spChar.setTextureRect(charAnim.uvRect);
 
   // Limitar el movimiento del personaje
@@ -32,7 +49,6 @@ void Character::update(){
   if(charPos.x > 500) charPos.x = 500;
   spChar.setPosition(charPos);
 
-  
 }
 
 void Character::draw(RenderWindow &window){

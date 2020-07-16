@@ -26,6 +26,11 @@ void Animation::setAnim(Texture *texture, int nFrames, float switchTime)
   uvRect.height = texture->getSize().y;
 }
 
+void Animation::setnFrames(int nFrames)
+{
+  this->nFrames = nFrames;
+}
+
 void Animation::updateAnim(float deltaTime, bool faceR)
 {
   totalTime += deltaTime;

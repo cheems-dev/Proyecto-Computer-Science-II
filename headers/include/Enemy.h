@@ -10,7 +10,7 @@ private:
   Texture textEnemy;
   // Velocidad del enemigo
   Vector2f vellEnemy;
-  const float EnemyVel = 5;
+  const float EnemyVel = 1;
   // Valores de acorde al tamaño de juego
   int valueX = 300, valueY = 200;
   // Animacion
