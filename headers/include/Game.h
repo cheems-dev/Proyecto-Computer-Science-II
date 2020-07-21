@@ -1,6 +1,7 @@
 #ifndef GAME_H 
 #define GAME_H 
 
+#include "SFML/Audio.hpp"
 #include "../../src/Character.cpp"
 #include "./Entity.h"
 #include <vector>
@@ -12,6 +13,9 @@ class Game
   RenderWindow window;
   Texture texBackground;
   Sprite spBackground;
+
+  Music bgm;
+  int c=0;
 
   // Personaje y enemigos
   Character *character;
