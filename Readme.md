@@ -16,7 +16,7 @@ sudo apt install libsfml-dev
 - Compilar un archivo
 
 ```
-g++ main.cpp -lsfml-graphics -lsfml-window -lsfml-system
+g++ main.cpp -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
 ```
 
 - Ejercutar nuestro programa
