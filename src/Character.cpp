@@ -7,6 +7,10 @@ Character::Character(const Vector2f &pos){
   textCharAtk.loadFromFile("./assets/characters/1 Woodcutter/Woodcutter_attack1.png");
   spChar.setTexture(textCharIdle);
   spChar.setPosition(pos);
+  //Hit-box
+  body.setSize(Vector2f(48.0f, 48.0f));
+  body.setPosition(pos);
+  body.setFillColor(Color::Transparent);
   // Animacion
   charAnim.setAnim(&textCharIdle,4,0.1f);
 }
@@ -20,6 +24,7 @@ void Character::update(){
     spChar.setTexture(textCharRun);
     charAnim.setnFrames(6);
     spChar.move(-charVel, 0);
+    body.move(-charVel, 0);
     faceR=false;
   }
   else if(Keyboard::isKeyPressed(Keyboard::D) || Keyboard::isKeyPressed(Keyboard::Right))
@@ -27,6 +32,7 @@ void Character::update(){
     spChar.setTexture(textCharRun);
     charAnim.setnFrames(6);
     spChar.move(charVel, 0);
+    body.move(charVel, 0);
     faceR = true;
   }
   else if(Keyboard::isKeyPressed(Keyboard::J))
@@ -48,10 +54,12 @@ void Character::update(){
   if(charPos.x < 0) charPos.x = 0;
   if(charPos.x > 500) charPos.x = 500;
   spChar.setPosition(charPos);
+  body.setPosition(charPos);
 
 }
 
 void Character::draw(RenderWindow &window){
+  window.draw(body);
   window.draw(spChar);
 } 
 

@@ -23,8 +23,11 @@ void Game::init(){
     bgm.play();
   }
 
-    // Crear el personaje
-    character = new Character(Vector2f(100, 200));
+  //Terreno
+  ground= new Terrain(Vector2f(32.0f,32.0f),Vector2f(16,308.0f));
+  
+  // Crear el personaje
+  character = new Character(Vector2f(100, 200));
   add(character);
 
   // Crear enemy
@@ -63,10 +66,15 @@ void Game::update(){
 }
 
 void Game::draw(){
+
   // Limpia la pantalla
   window.clear(Color::Black);
   // Dibujar los elementos del juego
   window.draw(spBackground);
+
+  //Dibujar el piso :c
+  ground->Draw(window);
+
   for (auto e: entities)
     e->draw(window);
 
