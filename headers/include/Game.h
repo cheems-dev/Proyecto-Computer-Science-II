@@ -1,8 +1,10 @@
 #ifndef GAME_H 
 #define GAME_H 
 
+#include "SFML/Audio.hpp"
 #include "../../src/Character.cpp"
 #include "./Entity.h"
+#include "../../src/Terrain.cpp"
 #include <vector>
 
 using namespace std;
@@ -13,6 +15,9 @@ class Game
   Texture texBackground;
   Sprite spBackground;
 
+  Music bgm;
+  int c=0;
+
   // Personaje y enemigos
   Character *character;
   Enemy *enemy;
@@ -21,6 +26,9 @@ class Game
   // tamaño definido 
   int height = 576;
   int width = 324;
+
+  //Test de Terreno
+  Terrain *ground;
 
   void init();
   void update();

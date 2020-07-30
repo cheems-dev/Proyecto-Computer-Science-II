@@ -1,3 +1,4 @@
+#include <iostream>
 #include "../headers/include/Game.h"
 
 Game::Game(){
@@ -6,13 +7,27 @@ Game::Game(){
 
 void Game::init(){
   window.create(VideoMode(height, width), "GTA 5");
-   // El programa se ejecuta a 60 frames x segundo, se ejecuta lo mismo en todas las maquinas
+  // El programa se ejecuta a 60 frames x segundo, se ejecuta lo mismo en todas las maquinas
   window.setFramerateLimit(60);
   // Fondo del juego
   texBackground.loadFromFile("./assets/swamp-game-tileset/2 Background/Background.png");
   spBackground.setTexture(texBackground);
+
+  if(!bgm.openFromFile("./assets/music/GameBGM.wav"))
+  {
+    cout<<"error"<<endl;
+  }
+  else
+  {
+    bgm.setLoop(true);
+    bgm.play();
+  }
+
+  //Terreno
+  ground= new Terrain(Vector2f(32.0f,32.0f),Vector2f(16,308.0f));
+  
   // Crear el personaje
-  character = new Character(Vector2f(100,200));
+  character = new Character(Vector2f(100, 200));
   add(character);
 
   // Crear enemy
@@ -46,14 +61,20 @@ void Game::update(){
     e->update();
   // detectar colisiones entre el personjae y la bola
   if (character->collidesWithEnemy(enemy))
-    window.close();
+    std::cout<<"collide"<<c++<<"\n";
+    //window.close();
 }
 
 void Game::draw(){
+
   // Limpia la pantalla
   window.clear(Color::Black);
   // Dibujar los elementos del juego
   window.draw(spBackground);
+
+  //Dibujar el piso :c
+  ground->Draw(window);
+
   for (auto e: entities)
     e->draw(window);
 
