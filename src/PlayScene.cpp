@@ -4,7 +4,7 @@
 #include <string>
 #include "../headers/include/PlayScene.h"
 #include "../headers/include/MenuScene.h"
-#include "../headers/include/Game_1.h"
+#include "../headers/include/Game.h"
 using namespace std;
 
 PlayScene::PlayScene()
@@ -14,7 +14,7 @@ PlayScene::PlayScene()
     add(player);
 
     minVel = 150;
-    createNewBall(minVel);
+    createNewEnemy(minVel);
     timeToNewBall.restart();
 
     // Music
@@ -53,20 +53,21 @@ void PlayScene::update(float elapsed)
     if (timeToNewBall.getElapsedTime().asSeconds() > 20)
     {
         minVel += 20;
-        createNewBall(minVel);
+        createNewEnemy(minVel);
         timeToNewBall.restart();
     }
     // Colisiones entre el personaje y las pelotas
-    for (const auto &ball : balls)
+    for (const auto &enemy : enemies)
     {
-        if (player->collidesWithEnemy(ball))
+        if (player->collidesWithEnemy(enemy))
         {
             //Dos opciones enter o esc
 
             if (score > Global::highScore)
                 Global::highScore = score;
+            // Programar el exit
             cout << "Programar exit " << endl;
-            // Game::getInstance().switchScene(new MenuScene());
+            Game::getInstance().switchScene(new MenuScene());
         }
     }
 
@@ -85,9 +86,9 @@ void PlayScene::draw(RenderWindow &window)
     window.draw(scoreText);
 }
 
-void PlayScene::createNewBall(float minVel)
+void PlayScene::createNewEnemy(float minVel)
 {
     Enemy *b = new Enemy();
-    balls.push_back(b);
+    enemies.push_back(b);
     add(b);
 }

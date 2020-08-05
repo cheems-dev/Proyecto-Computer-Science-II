@@ -1,44 +1,39 @@
-#ifndef GAME_H 
-#define GAME_H 
-
-#include "SFML/Audio.hpp"
-#include "../../src/Character.cpp"
-#include "./Entity.h"
-#include "../../src/Terrain.cpp"
-#include <vector>
-
+#ifndef GAME_HPP
+#define GAME_HPP
+#include <string>
+#include <SFML/Graphics/RenderWindow.hpp>
+#include "../../src/BaseScene.cpp"
 using namespace std;
+using namespace sf;
 
+/***
+ * Clase para manejar un bucle de juego con distintas escenas
+ */
 class Game
 {
+
   RenderWindow window;
-  Texture texBackground;
-  Sprite spBackground;
+  BaseScene *currentScene, *nextScene;
+  Clock clock;
 
-  Music bgm;
-  int c=0;
-
-  // Personaje y enemigos
-  Character *character;
-  Enemy *enemy;
-  // Vector de punteros , invocar poliformicamente update, draw
-  vector<Entity * > entities;
-  // tamaño definido 
-  int height = 576;
-  int width = 324;
-
-  //Test de Terreno
-  Terrain *ground;
-
-  void init();
+  void processEvents();
   void update();
   void draw();
+  static Game *instance;
+  Game();
 
 public:
-  Game();
+  /// comenzar el bucle de juego
   void run();
-  void add(Entity *);
-  // ~Game();
+
+  /// cambiar la escena actual por otra
+  void switchScene(BaseScene *scene);
+
+  /// obtener la instancia de juego (singleton)
+  static Game &getInstance();
+
+  /// crear un juego especificando el modo de video y la escena inicial
+  static Game &create(const VideoMode &videoMode, BaseScene *scene, const string &name = "");
 };
 
 #endif

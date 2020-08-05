@@ -1,9 +1,5 @@
 #include "../headers/include/BaseScene.h"
 
-// BaseScene::BaseScene()
-// {
-// }
-
 void BaseScene::update(float elapsed)
 {
   for (auto e : entities)

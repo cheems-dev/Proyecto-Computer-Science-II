@@ -1,83 +1,73 @@
-#include <iostream>
 #include "../headers/include/Game.h"
+#include <SFML/Window/Event.hpp>
+#include <SFML/Graphics/Sprite.hpp>
+#include <iostream>
+using namespace std;
+using namespace sf;
 
-Game::Game(){
-  init();
-}
+Game *Game::instance = nullptr;
+Game::Game() {}
 
-void Game::init(){
-  window.create(VideoMode(height, width), "GTA 5");
-  // El programa se ejecuta a 60 frames x segundo, se ejecuta lo mismo en todas las maquinas
-  window.setFramerateLimit(60);
-  // Fondo del juego
-  texBackground.loadFromFile("./assets/swamp-game-tileset/2 Background/Background.png");
-  spBackground.setTexture(texBackground);
-
-  if(!bgm.openFromFile("./assets/music/GameBGM.wav"))
-  {
-    cout<<"error"<<endl;
-  }
-  else
-  {
-    bgm.setLoop(true);
-    bgm.play();
-  }
-
-  //Terreno
-  ground= new Terrain(Vector2f(32.0f,32.0f),Vector2f(16,308.0f));
-  
-  // Crear el personaje
-  character = new Character(Vector2f(100, 200));
-  add(character);
-
-  // Crear enemy
-  enemy = new Enemy();
-  add(enemy);
-
-}
-
-void Game::add(Entity *e){
-  entities.push_back(e);
-}
-
-void Game::run(){
-    // Bucle del juego
-  while (window.isOpen())
-  {
-    // Eventos de pantalla
-    Event event;
-    while (window.pollEvent(event))
+Game &Game::create(const VideoMode &videoMode, BaseScene *scene, const string &name)
+{
+    if (instance)
+        cerr << "ERROR: can't call create(), game already running." << endl;
+    else
     {
-      if (event.type == event.Closed)
-        window.close();
+        Game &g = getInstance();
+        g.window.create(videoMode, name, Style::Close);
+        g.nextScene = nullptr;
+        g.currentScene = scene;
+        g.window.setFramerateLimit(60);
+        g.clock.restart();
     }
-    update();
-    draw();
-  }
+    return getInstance();
 }
 
-void Game::update(){
-  for(auto e: entities)
-    e->update();
-  // detectar colisiones entre el personjae y la bola
-  if (character->collidesWithEnemy(enemy))
-    std::cout<<"collide"<<c++<<"\n";
-    //window.close();
+Game &Game::getInstance()
+{
+    if (!instance)
+        instance = new Game();
+    return *instance;
 }
 
-void Game::draw(){
+void Game::run()
+{
+    while (window.isOpen() && currentScene != nullptr)
+    {
+        Event e;
+        while (window.pollEvent(e))
+        {
+            if (e.type == Event::Closed)
+                window.close();
+            else
+                currentScene->process_event(e);
+        }
+        update();
+        draw();
+        if (nextScene != nullptr)
+        {
+            delete currentScene;
+            currentScene = nextScene;
+            nextScene = nullptr;
+        }
+    }
+}
 
-  // Limpia la pantalla
-  window.clear(Color::Black);
-  // Dibujar los elementos del juego
-  window.draw(spBackground);
+void Game::update()
+{
+    currentScene->update(clock.getElapsedTime().asSeconds());
+    clock.restart();
+}
 
-  //Dibujar el piso :c
-  ground->Draw(window);
+void Game::draw()
+{
+    window.clear(Color(0, 0, 0, 255));
+    currentScene->draw(window);
+    window.display();
+}
 
-  for (auto e: entities)
-    e->draw(window);
-
-  // refrescar la ventana
-  window.display();
+void Game::switchScene(BaseScene *scene)
+{
+    nextScene = scene;
 }

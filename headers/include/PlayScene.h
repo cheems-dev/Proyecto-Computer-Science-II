@@ -18,7 +18,7 @@ using namespace sf;
 class PlayScene : public BaseScene
 {
     Character *player;      //nuestro personaje
-    vector<Enemy *> balls;  //arreglo con pelotas
+    vector<Enemy *> enemies;  //arreglo con enemigos
     float minVel;           //Velocidad en la que un enemigo se creara
     Clock timeToNewBall;    // tiempo para crear x enemigos
     float score;            // puntaje
@@ -26,10 +26,9 @@ class PlayScene : public BaseScene
     Font fontScoreText;     // fuente del texto
     Texture textBackground; // textura del fondo
     Sprite spBackground;    // sprite del fondo
-    // Enemy *enemy;
     Music bgm;
 
-    void createNewBall(float); // crear una nueva pelota
+    void createNewEnemy(float); // crear una nuevo enemigo
 
 public:
     PlayScene();
