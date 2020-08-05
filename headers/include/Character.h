@@ -18,27 +18,26 @@ private:
   //Estadisticas Personaje
   const float charVel = 3.0;
   unsigned int HP = 1000;
-  
 
   //Estados
   bool allowJump;
   bool isOnAttack;
   bool allowAttack;
   bool allowDamage;
-  
+
   // Animacion
   Animation charAnim;
-  float deltaTime=0.0f;
+  float deltaTime = 0.0f;
   Clock clock;
   bool faceR;
 
   //Colision
-  Collider getCollider() {return Collider(body);}
+  Collider getCollider() { return Collider(body); }
 
 public:
   Character(const Vector2f &);
   // Manejo de escena
-  void update() override;
+  void update(float elapsed) override;
   void draw(RenderWindow &) override;
   // Metodo que devuelva el sprite
   Sprite getSprite();

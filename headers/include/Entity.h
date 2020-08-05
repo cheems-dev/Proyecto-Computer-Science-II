@@ -1,11 +1,12 @@
-#ifndef ENTITY_H 
-#define ENTITY_H 
+#ifndef ENTITY_H
+#define ENTITY_H
 #include <SFML/Graphics.hpp>
 using namespace sf;
 
-class Entity{
+class Entity
+{
 public:
-  virtual void update() = 0;
+  virtual void update(float) = 0;
   virtual void draw(RenderWindow &w) = 0;
 };
 

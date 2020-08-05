@@ -1,10 +1,11 @@
-#ifndef ENEMY_H 
-#define ENEMY_H 
+#ifndef ENEMY_H
+#define ENEMY_H
 #include "./Entity.h"
 #include "../../src/Animation.cpp"
 // Incluir enemy
 // Standart C+11 -> Sobreescribir una funcion de una clase base
-class Enemy : public Entity{
+class Enemy : public Entity
+{
 private:
   Sprite spEnemy;
   Texture textEnemy;
@@ -22,8 +23,8 @@ private:
 public:
   Enemy();
   // Manejo de escena
-  void update()override;
-  void draw(RenderWindow &)override;
+  void update(float) override;
+  void draw(RenderWindow &) override;
   // Metodo que devuelva el sprite
   Sprite getSprite();
   // Cuando colisiona con el enemigo
