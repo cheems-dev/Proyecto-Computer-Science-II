@@ -2,37 +2,32 @@
 
 void BaseScene::update(float elapsed)
 {
-  for (auto e : entities)
-    e->update(elapsed);
+    for (auto e : entities)
+        e->update(elapsed);
 
-  // elimina actores
-  for (auto d : to_delete)
-  {
-    auto it = find(entities.begin(), entities.end(), d);
-    if (it != entities.end())
-      entities.erase(it);
-  }
-  to_delete.clear();
+    // elimina actores
+    for (auto d : to_delete)
+    {
+        auto it = find(entities.begin(), entities.end(), d);
+        if (it != entities.end())
+            entities.erase(it);
+    }
+    to_delete.clear();
 }
 
-void BaseScene::process_event(const sf::Event &e)
-{
-}
 
-void BaseScene::draw(sf::RenderWindow &w)
+void BaseScene::draw(RenderWindow &w)
 {
-  for (auto e : entities)
-  {
-    e->draw(w);
-  }
+    for (auto e : entities)
+        e->draw(w);
 }
 
 void BaseScene::add(Entity *e)
 {
-  entities.push_back(e);
+    entities.push_back(e);
 }
 
 void BaseScene::remove(Entity *e)
 {
-  to_delete.push_back(e);
+    to_delete.push_back(e);
 }

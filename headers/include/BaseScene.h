@@ -13,27 +13,23 @@ using namespace sf;
  */
 class BaseScene
 {
-  vector<Entity *> entities;
-  vector<Entity *> to_delete;
+    vector<Entity *> entities;
+    vector<Entity *> to_delete;
 
 public:
-  /// constructor
-  // BaseScene();
 
-  /// funcion que sera invocada para actualizar la escena
-  virtual void update(float);
+    // funcion que sera invocada para actualizar la escena
+    virtual void update(float);
 
-  /// funcion que sera invocada para dibujar la escena
-  virtual void draw(RenderWindow &);
+    // funcion que sera invocada para dibujar la escena
+    virtual void draw(RenderWindow &);
 
-  /// funcion que sera invocada para notificar a la escena de un evento
-  virtual void process_event(const Event &);
 
-  /// agrega un nuevo actor a la escena
-  void add(Entity *);
+    // agrega un nuevo actor a la escena
+    void add(Entity *);
 
-  /// eliminar un actor de la escena
-  void remove(Entity *e);
+    // eliminar un actor de la escena
+    void remove(Entity *e);
 };
 
 #endif
