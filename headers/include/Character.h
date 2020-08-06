@@ -14,10 +14,12 @@ private:
   Texture textCharIdle;
   Texture textCharRun;
   Texture textCharAtk;
+  Texture textCharJump;
 
   //Estadisticas Personaje
   const float charVel = 3.0;
   unsigned int HP = 1000;
+  float jumpheight = 0.01f;
 
   //Estados
   bool allowJump;

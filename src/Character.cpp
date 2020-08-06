@@ -1,4 +1,5 @@
 #include "../headers/include/Character.h"
+#include "math.h"
 
 Character::Character(const Vector2f &pos)
 {
@@ -6,6 +7,7 @@ Character::Character(const Vector2f &pos)
   textCharIdle.loadFromFile("./assets/characters/1 Woodcutter/Woodcutter_idle.png");
   textCharRun.loadFromFile("./assets/characters/1 Woodcutter/Woodcutter_run.png");
   textCharAtk.loadFromFile("./assets/characters/1 Woodcutter/Woodcutter_attack1.png");
+  textCharJump.loadFromFile("./assets/characters/1 Woodcutter/Woodcutter_jump.png");
   spChar.setTexture(textCharIdle);
   spChar.setPosition(pos);
   //Hit-box
@@ -37,6 +39,26 @@ void Character::update(float elapsed)
     body.move(charVel, 0);
     faceR = true;
   }
+  else if (Keyboard::isKeyPressed(Keyboard::W))
+  {
+    if(faceR)
+    {
+      spChar.setTexture(textCharJump);
+      charAnim.setnFrames(6);
+      float y_ofset = -sqrtf(2.0f * 98.10f * jumpheight);
+      spChar.move(charVel, y_ofset);
+      body.move(charVel, y_ofset);
+    }
+    else
+    {
+      spChar.setTexture(textCharJump);
+      charAnim.setnFrames(6);
+      float y_ofset = -sqrtf(2.0f * 98.10f * jumpheight);
+      spChar.move(-charVel, y_ofset);
+      body.move(-charVel, y_ofset);
+    }  
+  }
+
   else if (Keyboard::isKeyPressed(Keyboard::J))
   {
     spChar.setTexture(textCharAtk);

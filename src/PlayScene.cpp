@@ -4,6 +4,7 @@
 #include <string>
 #include "../headers/include/PlayScene.h"
 #include "../headers/include/MenuScene.h"
+#include "../headers/include/EndScene.h"
 #include "../headers/include/Game.h"
 using namespace std;
 
@@ -18,7 +19,7 @@ PlayScene::PlayScene()
     timeToNewBall.restart();
 
     // Music
-    if (!bgm.openFromFile("./assets/music/GameBGM.wav"))
+    if (!bgm.openFromFile("./assets/music/astronomia_bgm.wav"))
         cout << "error" << endl;
     else
     {
@@ -28,13 +29,14 @@ PlayScene::PlayScene()
     // Music
 
     // Puntaje
-    if (!fontScoreText.loadFromFile("/home/davaria/Documentos/repositories/Proyecto-Computer-Science/assets/font/Cave-Story.ttf"))
+    if (!fontScoreText.loadFromFile("./assets/font/Cave-Story.ttf"))
     {
         cerr << "ERROR: no se encontro la fuente "
             << "PlayScene.cpp"
             << endl;
     }
     // Puntaje
+    
     // Texturas de nuestros videojuego
     textBackground.loadFromFile("./assets/swamp-game-tileset/2 Background/Background.png");
     spBackground.setTexture(textBackground);
@@ -67,7 +69,7 @@ void PlayScene::update(float elapsed)
                 Global::highScore = score;
             // Programar el exit
             cout << "Programar exit " << endl;
-            Game::getInstance().switchScene(new MenuScene());
+            Game::getInstance().switchScene(new EndScene());
         }
     }
 
