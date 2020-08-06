@@ -45,7 +45,7 @@ void Character::update(float elapsed)
     {
       spChar.setTexture(textCharJump);
       charAnim.setnFrames(6);
-      float y_ofset = -sqrtf(2.0f * 1081.0f * jumpheight);
+      float y_ofset = -sqrtf(2.0f * 1200.0f * jumpheight);
       spChar.move(charVel, y_ofset);
       body.move(charVel, y_ofset);
     }
@@ -53,7 +53,7 @@ void Character::update(float elapsed)
     {
       spChar.setTexture(textCharJump);
       charAnim.setnFrames(6);
-      float y_ofset = -sqrtf(2.0f * 1081.0f * jumpheight);
+      float y_ofset = -sqrtf(2.0f * 1200.0f * jumpheight);
       spChar.move(-charVel, y_ofset);
       body.move(-charVel, y_ofset);
     }  
@@ -78,8 +78,8 @@ void Character::update(float elapsed)
     charPos.x = 0;
   if (charPos.x > 500)
     charPos.x = 500;
-  if (charPos.y < 200)
-    charPos.y+=3.810f;
+  if (charPos.y < 210)
+    charPos.y+=3.0f;
   if (charPos.y < 0)
     charPos.y = 0;
   spChar.setPosition(charPos);
