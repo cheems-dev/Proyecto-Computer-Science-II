@@ -15,7 +15,7 @@ Game &Game::create(const VideoMode &videoMode, BaseScene *scene, const string &n
     else
     {
         Game &g = getInstance();
-        g.window.create(videoMode, name, Style::Close);
+        g.window.create(videoMode, name, Style::Default);
         g.nextScene = nullptr;
         g.currentScene = scene;
         g.window.setFramerateLimit(60);
@@ -40,8 +40,6 @@ void Game::run()
         {
             if (e.type == Event::Closed)
                 window.close();
-            else
-                currentScene->process_event(e);
         }
         update();
         draw();

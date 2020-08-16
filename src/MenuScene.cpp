@@ -10,31 +10,31 @@ using namespace sf;
 
 MenuScene::MenuScene()
 {
-    if (!titleFont.loadFromFile("/home/davaria/Documentos/repositories/Proyecto-Computer-Science/assets/font//Cave-Story.ttf"))
+    if (!titleFont.loadFromFile("./assets/font/Cave-Story.ttf"))
     {
         cerr << "ERROR: no se encontro la fuente "
             << "MenuScene.cpp" << endl;
     }
     titleText.setFont(titleFont);
     titleText.setFillColor(Color::White);
-    titleText.setString("Ejemplo SFML");
-    titleText.setCharacterSize(120);
+    titleText.setString("JUNGLE ARCADE");
+    titleText.setCharacterSize(100);
     // centra el texto
-    titleText.setPosition(Vector2f((640 - titleText.getLocalBounds().width) / 2.0, 0));
+    titleText.setPosition(Vector2f((580 - titleText.getLocalBounds().width) / 2.0, 0));
 
     scoreText.setFont(titleFont);
     scoreText.setFillColor(Color::White);
     stringstream ss;
-    ss << "Puntaje total: " << Global::highScore;
+    ss << "Puntaje Maximo: " << Global::highScore;
     scoreText.setString(ss.str());
     scoreText.setCharacterSize(40);
-    scoreText.setPosition(Vector2f((640 - scoreText.getLocalBounds().width) / 2.0, 150));
+    scoreText.setPosition(Vector2f((580 - scoreText.getLocalBounds().width) / 2.0, 150));
 
     pressStartText.setFont(titleFont);
     pressStartText.setFillColor(Color::White);
     pressStartText.setString("Presione ENTER para comenzar");
     pressStartText.setCharacterSize(40);
-    pressStartText.setPosition(Vector2f((640 - pressStartText.getLocalBounds().width) / 2.0, 250));
+    pressStartText.setPosition(Vector2f((580 - pressStartText.getLocalBounds().width) / 2.0, 250));
 }
 
 void MenuScene::update(float elapsed)

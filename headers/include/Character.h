@@ -9,40 +9,39 @@
 class Character : public Entity
 {
 private:
-  RectangleShape body;
-  Sprite spChar;
-  Texture textCharIdle;
-  Texture textCharRun;
-  Texture textCharAtk;
-
-  //Estadisticas Personaje
-  const float charVel = 3.0;
-  unsigned int HP = 1000;
-
-  //Estados
-  bool allowJump;
-  bool isOnAttack;
-  bool allowAttack;
-  bool allowDamage;
-
-  // Animacion
-  Animation charAnim;
-  float deltaTime = 0.0f;
-  Clock clock;
-  bool faceR;
-
-  //Colision
-  Collider getCollider() { return Collider(body); }
-
+    RectangleShape body;
+    Sprite spChar;
+    Texture textCharIdle;
+    Texture textCharRun;
+    Texture textCharAtk;
+    Texture textCharJump;
+    //Estadisticas Personaje
+    const float charVel = 3.0;
+    unsigned int HP = 1000;
+    float jumpheight = 0.01f;
+    //Estados
+    bool allowJump;
+    bool isOnAttack;
+    bool allowAttack;
+    bool allowDamage;
+    // Animacion
+    Animation charAnim;
+    float deltaTime = 0.0f;
+    Clock clock;
+    bool faceR;
+    //Colision
+    Collider getCollider() {
+        return Collider(body);
+    }
 public:
-  Character(const Vector2f &);
-  // Manejo de escena
-  void update(float elapsed) override;
-  void draw(RenderWindow &) override;
-  // Metodo que devuelva el sprite
-  Sprite getSprite();
-  // Cuando colisiona con el enemigo
-  bool collidesWithEnemy(Enemy *);
+    Character(const Vector2f &);
+    // Manejo de escena
+    void update(float elapsed) override;
+    void draw(RenderWindow &) override;
+    // Metodo que devuelva el sprite
+    Sprite getSprite();
+    // Cuando colisiona con el enemigo
+    bool collidesWithEnemy(Enemy *);
 };
 
 #endif

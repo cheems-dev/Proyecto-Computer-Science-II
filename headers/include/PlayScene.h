@@ -20,7 +20,7 @@ class PlayScene : public BaseScene
     Character *player;      //nuestro personaje
     vector<Enemy *> enemies;  //arreglo con enemigos
     float minVel;           //Velocidad en la que un enemigo se creara
-    Clock timeToNewBall;    // tiempo para crear x enemigos
+    Clock timeToNewEnemy;    // tiempo para crear x enemigos
     float score;            // puntaje
     Text scoreText;         // texto para mostrar el puntaje
     Font fontScoreText;     // fuente del texto

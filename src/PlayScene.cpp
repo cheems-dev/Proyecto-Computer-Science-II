@@ -4,6 +4,7 @@
 #include <string>
 #include "../headers/include/PlayScene.h"
 #include "../headers/include/MenuScene.h"
+#include "../headers/include/EndScene.h"
 #include "../headers/include/Game.h"
 using namespace std;
 
@@ -15,10 +16,10 @@ PlayScene::PlayScene()
 
     minVel = 150;
     createNewEnemy(minVel);
-    timeToNewBall.restart();
+    timeToNewEnemy.restart();
 
     // Music
-    if (!bgm.openFromFile("./assets/music/GameBGM.wav"))
+    if (!bgm.openFromFile("./assets/music/astronomia_bgm.wav"))
         cout << "error" << endl;
     else
     {
@@ -28,13 +29,14 @@ PlayScene::PlayScene()
     // Music
 
     // Puntaje
-    if (!fontScoreText.loadFromFile("/home/davaria/Documentos/repositories/Proyecto-Computer-Science/assets/font/Cave-Story.ttf"))
+    if (!fontScoreText.loadFromFile("./assets/font/Cave-Story.ttf"))
     {
         cerr << "ERROR: no se encontro la fuente "
             << "PlayScene.cpp"
             << endl;
     }
     // Puntaje
+
     // Texturas de nuestros videojuego
     textBackground.loadFromFile("./assets/swamp-game-tileset/2 Background/Background.png");
     spBackground.setTexture(textBackground);
@@ -50,29 +52,26 @@ void PlayScene::update(float elapsed)
     //  actualiza el personaje
     BaseScene::update(elapsed);
     // creamos nuevo enemigo
-    if (timeToNewBall.getElapsedTime().asSeconds() > 20)
+    if (timeToNewEnemy.getElapsedTime().asSeconds() > 20)
     {
         minVel += 20;
         createNewEnemy(minVel);
-        timeToNewBall.restart();
+        timeToNewEnemy.restart();
     }
     // Colisiones entre el personaje y las pelotas
     for (const auto &enemy : enemies)
     {
         if (player->collidesWithEnemy(enemy))
         {
-            //Dos opciones enter o esc
-
             if (score > Global::highScore)
                 Global::highScore = score;
-            // Programar el exit
-            cout << "Programar exit " << endl;
-            Game::getInstance().switchScene(new MenuScene());
+            Game::getInstance().switchScene(new EndScene());
         }
     }
 
     // actualiza el puntaje
     score += elapsed;
+    //stringstream leer o escribir sobre una cadena
     stringstream tmp;
     tmp << "PUNTAJE: " << int(score);
     scoreText.setString(tmp.str());
