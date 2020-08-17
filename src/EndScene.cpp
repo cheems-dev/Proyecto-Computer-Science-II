@@ -14,7 +14,7 @@ EndScene::EndScene()
     if (!titleFont.loadFromFile("./assets/font/Cave-Story.ttf"))
     {
         cerr << "ERROR: no se encontro la fuente "
-            << "EndScene.cpp" << endl;
+             << "EndScene.cpp" << endl;
     }
     titleText.setFont(titleFont);
     titleText.setFillColor(Color::White);
@@ -41,10 +41,7 @@ EndScene::EndScene()
 void EndScene::update(float elapsed)
 {
     if (Keyboard::isKeyPressed(Keyboard::Return))
-    {
-        cout << "Presiono enter" << endl;
         Game::getInstance().switchScene(new PlayScene());
-    }
 }
 
 void EndScene::draw(RenderWindow &w)

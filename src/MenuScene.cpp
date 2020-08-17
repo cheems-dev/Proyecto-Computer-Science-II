@@ -13,11 +13,11 @@ MenuScene::MenuScene()
     if (!titleFont.loadFromFile("./assets/font/Cave-Story.ttf"))
     {
         cerr << "ERROR: no se encontro la fuente "
-            << "MenuScene.cpp" << endl;
+             << "MenuScene.cpp" << endl;
     }
     titleText.setFont(titleFont);
     titleText.setFillColor(Color::White);
-    titleText.setString("JUNGLE ARCADE");
+    titleText.setString("Mario Bros RP");
     titleText.setCharacterSize(100);
     // centra el texto
     titleText.setPosition(Vector2f((580 - titleText.getLocalBounds().width) / 2.0, 0));

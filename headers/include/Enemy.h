@@ -27,7 +27,6 @@ public:
   void draw(RenderWindow &) override;
   // Metodo que devuelva el sprite
   Sprite getSprite();
-  // Cuando colisiona con el enemigo
 };
 
 #endif

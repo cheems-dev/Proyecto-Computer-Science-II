@@ -19,20 +19,12 @@ private:
     const float charVel = 3.0;
     unsigned int HP = 1000;
     float jumpheight = 0.01f;
-    //Estados
-    bool allowJump;
-    bool isOnAttack;
-    bool allowAttack;
-    bool allowDamage;
     // Animacion
     Animation charAnim;
     float deltaTime = 0.0f;
     Clock clock;
     bool faceR;
-    //Colision
-    Collider getCollider() {
-        return Collider(body);
-    }
+
 public:
     Character(const Vector2f &);
     // Manejo de escena
