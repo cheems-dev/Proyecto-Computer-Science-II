@@ -3,7 +3,7 @@
 
 /***
  * Clase para depositar variables globales que necesitan
- * accederse a trav�s de las distintas escenas
+ * accederse a traves de las distintas escenas
  */
 class Global
 {

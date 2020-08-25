@@ -17,13 +17,11 @@ class BaseScene
     vector<Entity *> to_delete;
 
 public:
-
     // funcion que sera invocada para actualizar la escena
     virtual void update(float);
 
     // funcion que sera invocada para dibujar la escena
     virtual void draw(RenderWindow &);
-
 
     // agrega un nuevo actor a la escena
     void add(Entity *);
